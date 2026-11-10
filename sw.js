@@ -7,7 +7,7 @@
 // │ The phone serves files from this cache. A new version number is what   │
 // │ makes it throw the old copy away and download the new files.           │
 // └────────────────────────────────────────────────────────────────────────┘
-const CACHE_VERSION = "v2";
+const CACHE_VERSION = "v3";
 const CACHE = `never-zero-${CACHE_VERSION}`;
 
 // Every file the app needs to start. Add new files here when you create them.
@@ -21,6 +21,7 @@ const APP_FILES = [
   "./css/controls.css",
   "./css/orb.css",
   "./css/today.css",
+  "./css/progress.css",
   "./js/main.js",
   "./js/router.js",
   "./js/dom.js",
@@ -34,12 +35,16 @@ const APP_FILES = [
   "./js/visuals/scene.js",
   "./js/visuals/orb.js",
   "./js/features/today.js",
+  "./js/features/weighin.js",
   "./js/features/progress.js",
+  "./js/features/verdict.js",
+  "./js/features/weight-trend.js",
   "./js/features/plans.js",
   "./js/features/rules.js",
   "./js/features/backup.js",
   "./data/rules.js",
   "./data/tiers.js",
+  "./data/goals.js",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",

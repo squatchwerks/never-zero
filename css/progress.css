@@ -1,0 +1,43 @@
+/* progress.css — the 8-week grid, its legend, the verdict and the weight chart. */
+
+/* grid: week label | 7 day cells | count */
+.grid {
+  display: grid;
+  grid-template-columns: auto repeat(7, minmax(0, 1fr)) auto;
+  gap: 6px;
+  align-items: center;
+}
+.grid .hd { font-family: var(--mono); font-size: 11px; color: var(--muted); text-align: center; }
+.grid .wk {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-right: 4px;
+}
+.grid .ct { font-family: var(--mono); font-size: 13px; font-variant-numeric: tabular-nums; padding-left: 4px; text-align: right; }
+
+.cell {
+  width: 100%;
+  height: 30px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1.5px dashed rgba(255, 255, 255, .18);
+  background: transparent;
+}
+.cell.t1 { background: var(--t1); border: 0; }
+.cell.t2 { background: var(--t2); border: 0; box-shadow: 0 0 12px rgba(34, 211, 238, .45); }
+.cell.t3 { background: var(--t3); border: 0; box-shadow: 0 0 14px rgba(139, 123, 255, .55); }
+.cell:disabled { opacity: .3; }
+
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend .pip { width: 14px; height: 14px; border-radius: 5px; box-shadow: none; }
+
+/* "Is it working?" sentences, each with an accent bar */
+.verdict { display: flex; flex-direction: column; gap: 10px; }
+.verdict p { padding-left: 13px; border-left: 2px solid var(--cyan); }
+
+/* weight chart */
+.chart svg { display: block; width: 100%; height: auto; }

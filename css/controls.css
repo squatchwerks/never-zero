@@ -48,6 +48,22 @@
   text-decoration: underline;
 }
 
+/* labeled text inputs: <label class="field"><span class="label">…</span><input></label> */
+.field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: var(--tap);
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, .32);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-ctl);
+  font-size: 16px; /* 16px or more stops iPhone Safari from zooming in on tap */
+}
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(226, 235, 255, .4); }
+.field textarea { resize: vertical; }
+
 @media (prefers-reduced-motion: reduce) {
   .btn, .chip { transition: none; }
   .btn:active { transform: none; }

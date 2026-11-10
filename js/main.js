@@ -27,7 +27,10 @@ import { getSelected, selectToday } from "./selection.js";
 import { startScene } from "./visuals/scene.js";
 
 import today from "./features/today.js";
+import weighin from "./features/weighin.js";
 import progress from "./features/progress.js";
+import verdict from "./features/verdict.js";
+import weightTrend from "./features/weight-trend.js";
 import plans from "./features/plans.js";
 import rules from "./features/rules.js";
 import backup from "./features/backup.js";
@@ -41,7 +44,10 @@ const TABS = [
 
 const FEATURES = [
   today,
+  weighin,
   progress,
+  verdict,
+  weightTrend,
   plans,
   rules,
   backup,
