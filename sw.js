@@ -7,7 +7,7 @@
 // │ The phone serves files from this cache. A new version number is what   │
 // │ makes it throw the old copy away and download the new files.           │
 // └────────────────────────────────────────────────────────────────────────┘
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const CACHE = `never-zero-${CACHE_VERSION}`;
 
 // Every file the app needs to start. Add new files here when you create them.
@@ -18,24 +18,40 @@ const APP_FILES = [
   "./css/base.css",
   "./css/tabs.css",
   "./css/cards.css",
+  "./css/controls.css",
+  "./css/orb.css",
+  "./css/today.css",
   "./js/main.js",
   "./js/router.js",
   "./js/dom.js",
+  "./js/bus.js",
+  "./js/dates.js",
+  "./js/scoring.js",
+  "./js/selection.js",
+  "./js/status.js",
+  "./js/storage.js",
+  "./js/visuals/gl.js",
+  "./js/visuals/scene.js",
+  "./js/visuals/orb.js",
   "./js/features/today.js",
   "./js/features/progress.js",
   "./js/features/plans.js",
   "./js/features/rules.js",
+  "./js/features/backup.js",
   "./data/rules.js",
+  "./data/tiers.js",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
   "./icons/apple-touch-icon.png",
 ];
 
 // 1. install: download every app file into a fresh cache.
+// { cache: "reload" } skips the browser's own short-term cache, so a new
+// version never gets stuck with a leftover copy of an old file.
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE)
-      .then((cache) => cache.addAll(APP_FILES))
+      .then((cache) => cache.addAll(APP_FILES.map((url) => new Request(url, { cache: "reload" }))))
       .then(() => self.skipWaiting()), // take over without waiting for the app to fully close
   );
 });

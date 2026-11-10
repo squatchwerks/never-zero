@@ -1,0 +1,54 @@
+/* controls.css — buttons, chips and layout rows shared by every feature. */
+
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.between { justify-content: space-between; }
+
+/* main button (gradient) and its quieter "ghost" version */
+.btn {
+  min-height: var(--tap);
+  background: var(--grad);
+  color: var(--on-grad);
+  border: 0;
+  border-radius: var(--radius-ctl);
+  padding: 11px 18px;
+  font-weight: 600;
+  box-shadow: 0 0 22px rgba(34, 211, 238, .25);
+  transition: transform .15s, box-shadow .25s;
+}
+.btn:active { transform: scale(.97); }
+.btn.ghost { background: rgba(255, 255, 255, .05); color: var(--ink); border: 1px solid var(--line); box-shadow: none; }
+
+/* chip = a small on/off toggle (Cardio, Strength, Alcohol-free…) */
+.chip {
+  min-height: var(--tap);
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.chip[aria-pressed="true"] {
+  background: var(--grad);
+  border-color: transparent;
+  color: var(--on-grad);
+  font-weight: 600;
+  box-shadow: 0 0 22px rgba(139, 123, 255, .4);
+}
+
+/* a button that looks like a link */
+.linkbtn {
+  min-height: var(--tap);
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--cyan);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn, .chip { transition: none; }
+  .btn:active { transform: none; }
+}

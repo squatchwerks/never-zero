@@ -1,0 +1,63 @@
+/* today.css — the week strip and the movement tier buttons. */
+
+/* ── week strip: 7 day buttons ── */
+.week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.day {
+  min-width: 0;
+  min-height: var(--tap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 0 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  transition: background .2s, border-color .2s;
+}
+.day .wd { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.day .num { font-family: var(--mono); font-size: 12px; font-variant-numeric: tabular-nums; }
+.day[aria-pressed="true"] { border-color: rgba(34, 211, 238, .7); background: rgba(34, 211, 238, .10); }
+.day:disabled { opacity: .35; }
+
+/* pip = the colored square for a day's movement tier (also used in Progress later) */
+.pip { width: 22px; height: 22px; border-radius: 8px; border: 1.5px dashed rgba(255, 255, 255, .22); background: transparent; display: block; }
+.pip.t1 { background: var(--t1); border: 0; }
+.pip.t2 { background: var(--t2); border: 0; box-shadow: 0 0 14px rgba(34, 211, 238, .55); }
+.pip.t3 { background: var(--t3); border: 0; box-shadow: 0 0 16px rgba(139, 123, 255, .65); }
+
+/* fbar = the thin bar under each pip for that day's food score */
+.fbar { width: 16px; height: 4px; border-radius: 2px; background: transparent; border: 1px solid transparent; }
+.fbar.f0 { border-color: rgba(255, 255, 255, .35); }
+.fbar.f1 { background: rgba(139, 123, 255, .45); }
+.fbar.f2 { background: rgba(139, 123, 255, .75); }
+.fbar.f3 { background: #B9AEFF; box-shadow: 0 0 8px rgba(139, 123, 255, .8); }
+
+/* ── movement tiers ── */
+.tiers { display: flex; flex-direction: column; gap: 8px; }
+.tier {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 14px;
+  align-items: center;
+  text-align: left;
+  background: rgba(255, 255, 255, .04);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 13px 15px;
+  transition: transform .15s, border-color .25s, box-shadow .25s, background .25s;
+}
+.tier:active { transform: scale(.98); }
+.tier .pip { width: 30px; height: 30px; border-radius: 10px; }
+.tier strong { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; display: block; }
+.tier span.d { font-size: 14px; color: var(--muted); }
+.tier[aria-pressed="true"] {
+  border-color: rgba(34, 211, 238, .85);
+  background: rgba(34, 211, 238, .10);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, .35), 0 0 34px rgba(34, 211, 238, .22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .day, .tier { transition: none; }
+  .tier:active { transform: none; }
+}

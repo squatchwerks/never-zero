@@ -1,0 +1,64 @@
+/* orb.css — the orb at the top of Today, its shock ring, and the X/7 number. */
+
+.hero {
+  position: relative;
+  width: min(82vw, 330px);
+  aspect-ratio: 1;
+  max-width: 100%;
+  margin: -6px auto -14px;
+}
+.hero canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* fallback ball when WebGL isn't available */
+.hero canvas.orb.nogl {
+  inset: 20%;
+  width: 60%;
+  height: 60%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #9FF3F7, var(--cyan) 30%, #5B4BD6 65%, #12163A 100%);
+  box-shadow: 0 0 60px rgba(34, 211, 238, .45);
+}
+
+/* the shock ring that expands when you log a day */
+.ring {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  border: 2px solid var(--cyan);
+  opacity: 0;
+  pointer-events: none;
+}
+.ring.go { animation: shock .9s cubic-bezier(.2, .7, .2, 1); }
+@keyframes shock {
+  0% { opacity: .9; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.75); }
+}
+
+/* "4/7 counted this week", centered over the orb */
+.hero-txt {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-shadow: 0 2px 22px rgba(0, 0, 10, .75), 0 0 3px rgba(0, 0, 10, .6);
+  pointer-events: none;
+}
+.hero-txt .label { color: var(--ink); opacity: .9; }
+.big {
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.big .of { font-size: 26px; font-weight: 500; letter-spacing: -0.02em; opacity: .8; margin-left: 2px; }
+.score { text-align: center; font-variant-numeric: tabular-nums; }

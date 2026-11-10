@@ -12,3 +12,6 @@ never-zero-starter.zip
 
 # Python cache from tools/make-icons.py
 __pycache__/
+
+# Backups made with the Export button (they hold your real check-ins)
+never-zero-backup*.json

@@ -20,11 +20,17 @@
 // ──────────────────────────────────────────────────────────────────────────
 
 import { createRouter } from "./router.js";
+import { on } from "./bus.js";
+import { setStatus } from "./status.js";
+import { todayKey } from "./dates.js";
+import { getSelected, selectToday } from "./selection.js";
+import { startScene } from "./visuals/scene.js";
 
 import today from "./features/today.js";
 import progress from "./features/progress.js";
 import plans from "./features/plans.js";
 import rules from "./features/rules.js";
+import backup from "./features/backup.js";
 
 const TABS = [
   { id: "today", label: "Today" },
@@ -38,9 +44,12 @@ const FEATURES = [
   progress,
   plans,
   rules,
+  backup,
 ];
 
 // ─── start up ─────────────────────────────────────────────────────────────
+
+startScene(document.getElementById("bg"));
 
 const { sections, current, start } = createRouter({
   tabs: TABS,
@@ -60,16 +69,34 @@ for (const f of FEATURES) {
 showDateline();
 start(); // shows the tab named in the URL and renders its features
 
+// When storage or the selected day changes, redraw.
+on((change) => {
+  if (change.ok === false) setStatus("Couldn't save on this device. Storage may be full.", true);
+  notifyChange(change);
+});
+
+// The app can stay open overnight on a phone. When it comes back to the
+// screen on a new day, move "today" forward.
+let lastToday = todayKey();
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden || todayKey() === lastToday) return;
+  const wasOnToday = getSelected() === lastToday;
+  lastToday = todayKey();
+  showDateline();
+  if (wasOnToday) selectToday(); // this also triggers a redraw
+  else notifyChange({ type: "newday" });
+});
+
 /** Redraw every feature on one tab. */
 function renderTab(tabId) {
   for (const f of FEATURES) if (f.tab === tabId) safely(f, "render");
 }
 
 /**
- * Tell features that data changed (storage.js will call this from slice 2).
+ * Tell features that something changed (see bus.js for the kinds of change).
  * Only the visible tab redraws now; the others redraw when they're shown.
  */
-export function notifyChange(change) {
+function notifyChange(change) {
   const tabId = current();
   for (const f of FEATURES) {
     if (f.tab !== tabId) continue;
