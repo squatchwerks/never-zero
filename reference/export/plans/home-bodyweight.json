@@ -1,0 +1,34 @@
+{
+  "kind": "Home",
+  "order": 3,
+  "sessions": [
+    {
+      "items": [
+        "Bodyweight squat, 10–15 reps",
+        "Push-up, 6–12 reps (hands on a counter or couch to make it easier)",
+        "Glute bridge, 12–15 reps",
+        "Plank, 30–45 seconds"
+      ],
+      "name": "Circuit A"
+    },
+    {
+      "items": [
+        "Reverse lunge, 8 per leg",
+        "Pike push-up, 5–10 reps",
+        "Single-leg glute bridge, 8 per leg",
+        "Dead bug, 8 per side"
+      ],
+      "name": "Circuit B"
+    },
+    {
+      "items": [
+        "10 squats, 8 push-ups, 10 glute bridges",
+        "Repeat until five minutes are up"
+      ],
+      "name": "Five-minute version",
+      "note": "For a true minimum day."
+    }
+  ],
+  "summary": "For days when the gym is not happening. Each circuit takes 10 to 15 minutes in a living room. Do the moves back to back, rest a minute, and repeat for 2 to 3 rounds. Stop each move with about two reps left. Tag the day as strength.",
+  "title": "Home bodyweight: no equipment"
+}

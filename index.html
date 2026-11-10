@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- viewport-fit=cover lets the app draw under the notch; CSS safe-area insets keep text clear of it -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Never Zero</title>
+  <meta name="description" content="Daily fitness check-in. Never a zero day.">
+
+  <!-- Installable app (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#05070F">
+
+  <!-- iPhone "Add to Home Screen" -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Never Zero">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap">
+
+  <!-- Styles, split by concern -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/tabs.css">
+  <link rel="stylesheet" href="css/cards.css">
+
+  <!-- type="module" lets JS files import each other. Modules also run after the page is parsed. -->
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <p class="label" id="dateline"></p>
+        <h1>Never <span class="g">Zero</span></h1>
+      </div>
+      <p id="status" role="status"></p>
+    </header>
+
+    <!-- js/router.js adds one <section> per tab here -->
+    <main id="views"></main>
+  </div>
+
+  <nav class="tabs" aria-label="Sections">
+    <!-- js/router.js adds one link per tab here -->
+    <div class="bar" id="tabbar"></div>
+  </nav>
+
+  <noscript><p style="position:relative;z-index:1;text-align:center">Never Zero needs JavaScript turned on.</p></noscript>
+</body>
+</html>

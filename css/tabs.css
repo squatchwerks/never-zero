@@ -1,0 +1,60 @@
+/* tabs.css — the floating pill tab bar at the bottom of the screen. */
+
+nav.tabs {
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;   /* the empty strip around the pill lets taps through */
+  padding:
+    0
+    max(var(--gutter), var(--safe-right))
+    calc(14px + var(--safe-bottom))   /* sit above the iPhone home indicator */
+    max(var(--gutter), var(--safe-left));
+}
+
+nav.tabs .bar {
+  pointer-events: auto;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;   /* any number of tabs, equal widths */
+  gap: 4px;
+  width: 100%;
+  max-width: 420px;
+  padding: 5px;
+  border-radius: 999px;
+  background: rgba(10, 14, 28, .72);
+  border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .5);
+}
+
+nav.tabs a {
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border-radius: 999px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .25s, background .25s;
+}
+
+nav.tabs a[aria-current="page"] {
+  background: var(--grad);
+  color: var(--on-grad);
+  font-weight: 600;
+  box-shadow: 0 0 24px rgba(34, 211, 238, .35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav.tabs a { transition: none; }
+}

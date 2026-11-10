@@ -1,0 +1,26 @@
+{
+  "kind": "Lifting",
+  "order": 2,
+  "sessions": [
+    {
+      "items": [
+        "Goblet squat",
+        "Dumbbell bench press or push-ups",
+        "Seated cable row or one-arm dumbbell row",
+        "Farmer carry, 3 trips of about 40 steps"
+      ],
+      "name": "Session A"
+    },
+    {
+      "items": [
+        "Dumbbell Romanian deadlift",
+        "Dumbbell overhead press",
+        "Lat pulldown",
+        "Plank, 3 holds of 30–45 seconds"
+      ],
+      "name": "Session B"
+    }
+  ],
+  "summary": "Two short sessions a week, added to a cardio day to make it a good day. Do 2–3 sets of 8–12 and stop with about two reps left in the tank. Each session takes about 20 minutes and works with dumbbells and a cable machine, so it carries over to an apartment gym.",
+  "title": "Starter lifting: four moves"
+}

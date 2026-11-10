@@ -1,0 +1,31 @@
+{
+  "kind": "Lifting",
+  "order": 4,
+  "sessions": [
+    {
+      "items": [
+        "Squat, 3 sets of 5 at 70%",
+        "Bench press, 3 sets of 5 at 70%",
+        "Seated cable row, 3 sets of 8–12"
+      ],
+      "name": "Day A"
+    },
+    {
+      "items": [
+        "Deadlift, 3 sets of 5 at 70%",
+        "Bench press, 3 sets of 8 at 60%",
+        "Lat pulldown, 3 sets of 8–12"
+      ],
+      "name": "Day B"
+    },
+    {
+      "items": [
+        "When every set leaves two reps in the tank, add 5 lb next time (10 lb on deadlift)",
+        "After a gap of two weeks or more, restart at 60%"
+      ],
+      "name": "Progression"
+    }
+  ],
+  "summary": "A barbell version for when you have a full gym. Take the weights from the table in Your lifts at the top of this tab. Three sets each, about 30 minutes. Skip any lift your gym can't support and use the starter plan's dumbbell version instead.",
+  "title": "Big three, two days a week"
+}

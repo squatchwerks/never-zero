@@ -1,0 +1,38 @@
+{
+  "kind": "Cardio",
+  "order": 1,
+  "sessions": [
+    {
+      "items": [
+        "3.0–3.5 mph at 4–6% incline"
+      ],
+      "name": "Step 1: Incline walk, 20 minutes"
+    },
+    {
+      "items": [
+        "Same settings for longer, or raise the incline to 8%"
+      ],
+      "name": "Step 2: Incline walk, 30 minutes"
+    },
+    {
+      "items": [
+        "1 minute easy jog, 3 minutes walk, repeat"
+      ],
+      "name": "Step 3: Walk/jog, 20–25 minutes"
+    },
+    {
+      "items": [
+        "2 minutes easy jog, 2 minutes walk, repeat"
+      ],
+      "name": "Step 4: Walk/jog, 25–30 minutes"
+    },
+    {
+      "items": [
+        "Slow enough to talk; walk breaks are fine"
+      ],
+      "name": "Step 5: Continuous easy jog, 15–20 minutes"
+    }
+  ],
+  "summary": "Everything here is easy. You should be able to talk in full sentences the whole time. Move up a step once the current one has felt comfortable twice in a row, and no faster. Any step counts as a normal day.",
+  "title": "Starter cardio: easy base"
+}

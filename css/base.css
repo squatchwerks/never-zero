@@ -1,0 +1,139 @@
+/* base.css — design tokens, reset, page layout, typography.
+   Every color, font and spacing value lives here as a CSS variable,
+   so other CSS files (and future themes) only ever reference var(--…). */
+
+:root {
+  color-scheme: dark;
+
+  /* palette */
+  --bg: #05070F;
+  --ink: #EEF4FF;
+  --muted: rgba(226, 235, 255, .68);
+  --line: rgba(255, 255, 255, .13);
+  --glass: rgba(12, 18, 34, .52);
+  --glass-hi: rgba(255, 255, 255, .07);
+  --cyan: #22D3EE;
+  --violet: #8B7BFF;
+  --coral: #FF6B8B;
+  --alert: #FFB4A1;
+  --on-grad: #060914;            /* text placed on top of --grad */
+
+  /* movement tiers: 1 Minimum, 2 Normal, 3 Good */
+  --t1: #1F7388;
+  --t2: #22D3EE;
+  --t3: linear-gradient(135deg, #22D3EE 0%, #8B7BFF 55%, #FF6B8B 100%);
+  --grad: linear-gradient(120deg, #22D3EE, #8B7BFF 60%, #FF6B8B);
+
+  /* type */
+  --display: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* spacing + shape */
+  --gap: 16px;
+  --gutter: 16px;
+  --radius-card: 22px;
+  --radius-ctl: 13px;
+  --tap: 44px;                   /* minimum tap target (Apple guideline) */
+  --tabbar-h: 120px;             /* room left at the bottom for the floating tab bar */
+
+  /* iPhone notch / home-indicator insets (0 on other devices) */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  /* keep content clear of the notch, the rounded corners and the tab bar */
+  padding:
+    calc(20px + var(--safe-top))
+    max(var(--gutter), var(--safe-right))
+    calc(var(--tabbar-h) + var(--safe-bottom))
+    max(var(--gutter), var(--safe-left));
+}
+
+[hidden] { display: none !important; }
+
+/* Background. Slice 1 uses a static CSS gradient; slice 2 draws the live
+   WebGL "liquid" version on this same canvas and keeps this as the fallback. */
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 50% at 20% 15%, rgba(34, 211, 238, .28), transparent 70%),
+    radial-gradient(55% 45% at 85% 35%, rgba(139, 123, 255, .30), transparent 70%),
+    radial-gradient(60% 50% at 50% 95%, rgba(255, 107, 139, .20), transparent 70%);
+}
+
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+/* typography */
+h1, h2, h3 { margin: 0; text-wrap: balance; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; }
+h1 { font-size: 26px; font-weight: 700; }
+h2 { font-size: 19px; }
+h3 { font-size: 16px; letter-spacing: -0.01em; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* header */
+header.top { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+h1 .g { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#status { font-family: var(--mono); font-size: 12px; color: var(--muted); min-height: 1.2em; }
+#status.bad { color: var(--alert); }
+
+/* controls */
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+button:disabled { opacity: .5; cursor: default; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+/* views: one <section> per tab, the router shows one at a time */
+section.view { display: flex; flex-direction: column; gap: var(--gap); }
+
+/* load-in animation, replayed whenever a tab is shown.
+   Wrapped in a media query so it never runs for people who turn on Reduce Motion. */
+@media (prefers-reduced-motion: no-preference) {
+  section.view > * { animation: rise .7s cubic-bezier(.2, .8, .2, 1) both; }
+  section.view > *:nth-child(2) { animation-delay: .06s; }
+  section.view > *:nth-child(3) { animation-delay: .12s; }
+  section.view > *:nth-child(4) { animation-delay: .18s; }
+  section.view > *:nth-child(n+5) { animation-delay: .24s; }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(18px) scale(.985); }
+    to { opacity: 1; transform: none; }
+  }
+}

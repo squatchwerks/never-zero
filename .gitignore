@@ -1,0 +1,14 @@
+# .gitignore — files git should never track (so they never reach the public repo).
+
+# Your real check-in history and settings stay on this Mac only.
+reference/export/days/
+reference/export/settings-hub.json
+
+# The original download; its contents are already unpacked here.
+never-zero-starter.zip
+
+# macOS folder metadata
+.DS_Store
+
+# Python cache from tools/make-icons.py
+__pycache__/
